@@ -31,10 +31,13 @@ class SortingCubit extends Cubit<SortingState> {
 
   void updateSelectedDelay(Duration delay) {
     emit(state.copyWith(delay: delay));
+    sortingInteractor.updateDelay(state.delay);
   }
 
   void updateSelectedValueType(ValueType valueType) {
     emit(state.copyWith(valueType: valueType));
+    generateInitialValues();
+    reset();
   }
 
   void updateSelectedLength(int length) {

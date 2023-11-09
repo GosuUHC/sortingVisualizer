@@ -68,7 +68,7 @@ class RightEndDrawer extends Drawer {
               ListTile(
                 title: const Text("Value Count"),
                 trailing: SizedBox(
-                  width: 200, // Set a suitable width based on your design.
+                  width: 200,
                   child: Slider(
                     value: state.length.toDouble(),
                     min: 1,
@@ -82,16 +82,16 @@ class RightEndDrawer extends Drawer {
                 ),
               ),
               ListTile(
-                title: const Text("Sorting Speed"),
+                title: const Text("Delay"),
                 trailing: SizedBox(
-                  width: 200, // Set a suitable width based on your design.
+                  width: 200,
                   child: Slider(
-                    value: 5,
-                    min: 1,
-                    max: 10,
+                    value: state.delay.inMilliseconds.toDouble(),
+                    min: 5,
+                    max: 300,
                     onChanged: (value) {
-                      // Implement your logic when the sorting speed is changed.
-                      // Update the 'sortingSpeed' state here.
+                      context.read<SortingCubit>().updateSelectedDelay(
+                          Duration(milliseconds: value.toInt()));
                     },
                   ),
                 ),
