@@ -7,6 +7,8 @@ class ColumnsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("columns card rebuild");
+
     return Align(
       alignment: Alignment.topCenter,
       child: Card(
@@ -19,9 +21,7 @@ class ColumnsCard extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              RepaintBoundary(
-                child: ColumnPainter(),
-              )
+              ColumnPainter(),
             ],
           ),
         ),

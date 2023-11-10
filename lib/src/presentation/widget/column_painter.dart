@@ -7,12 +7,20 @@ class ColumnPainter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<SortingCubit>().state;
+    final sortedData = context.select(
+      (SortingCubit cubit) => cubit.state.sortedData,
+    );
+
+    final comparingIndices = context.select(
+      (SortingCubit cubit) => cubit.state.comparingIndices,
+    );
+
+    print("column painter rebuild");
 
     return CustomPaint(
       size: Size(MediaQuery.of(context).size.width,
           MediaQuery.of(context).size.height / 1.8),
-      painter: ColumnGraphPainter(state.sortedData, state.comparingIndices),
+      painter: ColumnGraphPainter(sortedData, comparingIndices),
     );
   }
 }
@@ -59,7 +67,7 @@ class ColumnGraphPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+  bool shouldRepaint(covariant ColumnGraphPainter oldDelegate) {
     return true;
   }
 }
