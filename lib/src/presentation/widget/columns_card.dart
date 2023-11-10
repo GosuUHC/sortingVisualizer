@@ -21,7 +21,9 @@ class ColumnsCard extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ColumnPainter(),
+              RepaintBoundary(
+                child: ColumnPainter(),
+              )
             ],
           ),
         ),

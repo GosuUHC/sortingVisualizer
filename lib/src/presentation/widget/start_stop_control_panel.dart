@@ -12,28 +12,34 @@ class StartStopControlPanel extends StatelessWidget {
       (SortingCubit cubit) => cubit.state.sortingStatus,
     );
 
+    // same as ^
+    // final sortingStatus = context.select<SortingCubit, SortingStatus>(
+    //   (cubit) => cubit.state.sortingStatus,
+    // );
+
     print("start stop button rebuild");
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         FloatingActionButton(
-          onPressed: () {
-            // start/pause/resume sorting
-            context.read<SortingCubit>().onPressPlayButton();
-          },
           child: Icon(
             sortingStatus == SortingStatus.running
                 ? Icons.pause
                 : Icons.play_arrow_outlined,
           ),
+          onPressed: () {
+            // start/pause/resume sorting
+            context.read<SortingCubit>().onPressPlayButton();
+          },
         ),
+        const SizedBox(width: 1.5),
         FloatingActionButton(
+          child: const Icon(Icons.restart_alt_rounded),
           onPressed: () {
             // Reset list values to initial
             context.read<SortingCubit>().reset();
           },
-          child: const Icon(Icons.restart_alt_rounded),
         ),
       ],
     );
