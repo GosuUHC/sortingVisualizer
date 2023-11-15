@@ -2,11 +2,11 @@ import 'package:sorting_algorithms_visualization/src/domain/api/in/sorting_algor
 import 'package:sorting_algorithms_visualization/src/domain/api/out/swapper.dart';
 import 'package:sorting_algorithms_visualization/src/domain/api/out/values_comparator.dart';
 
-import 'package:sorting_algorithms_visualization/src/domain/impl/algorithms/bubble_sort.dart';
-import 'package:sorting_algorithms_visualization/src/domain/impl/algorithms/insertion_sort.dart';
-import 'package:sorting_algorithms_visualization/src/domain/impl/algorithms/merge_sort.dart';
-import 'package:sorting_algorithms_visualization/src/domain/impl/algorithms/quick_sort.dart';
-import 'package:sorting_algorithms_visualization/src/domain/impl/algorithms/selection_sort.dart';
+import 'package:sorting_algorithms_visualization/src/domain/impl/algorithm/bubble_sort.dart';
+import 'package:sorting_algorithms_visualization/src/domain/impl/algorithm/insertion_sort.dart';
+import 'package:sorting_algorithms_visualization/src/domain/impl/algorithm/merge_sort.dart';
+import 'package:sorting_algorithms_visualization/src/domain/impl/algorithm/quick_sort.dart';
+import 'package:sorting_algorithms_visualization/src/domain/impl/algorithm/selection_sort.dart';
 
 class SortingAlgorithmsFactory {
   static SortingAlgorithm createBubbleSort(
