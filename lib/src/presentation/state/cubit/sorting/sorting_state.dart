@@ -1,7 +1,7 @@
 import 'package:sorting_algorithms_visualization/src/application/algorithm_type.dart';
 import 'package:sorting_algorithms_visualization/src/application/value_type.dart';
 import 'package:sorting_algorithms_visualization/src/constants.dart';
-import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/sorting_status.dart';
+import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/sorting/sorting_status.dart';
 
 class SortingState {
   final List<int> initialData;

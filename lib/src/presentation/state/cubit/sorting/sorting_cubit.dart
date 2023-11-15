@@ -3,8 +3,8 @@ import 'package:sorting_algorithms_visualization/src/application/algorithm_type.
 import 'package:sorting_algorithms_visualization/src/application/api/in/interactor/sorting_interactor.dart';
 import 'package:sorting_algorithms_visualization/src/application/api/in/interactor/values_interactor.dart';
 import 'package:sorting_algorithms_visualization/src/application/value_type.dart';
-import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/sorting_state.dart';
-import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/sorting_status.dart';
+import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/sorting/sorting_state.dart';
+import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/sorting/sorting_status.dart';
 
 class SortingCubit extends Cubit<SortingState> {
   final SortingInteractor sortingInteractor;

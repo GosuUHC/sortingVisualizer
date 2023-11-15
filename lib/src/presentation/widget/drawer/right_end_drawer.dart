@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sorting_algorithms_visualization/src/presentation/widget/drawer/delay_duration_slider.dart';
+import 'package:sorting_algorithms_visualization/src/presentation/widget/drawer/save_button.dart';
 import 'package:sorting_algorithms_visualization/src/presentation/widget/drawer/sorting_algorithm_select.dart';
 import 'package:sorting_algorithms_visualization/src/presentation/widget/drawer/value_count_slider.dart';
 import 'package:sorting_algorithms_visualization/src/presentation/widget/drawer/value_type_select.dart';
@@ -30,6 +31,7 @@ class RightEndDrawer extends Drawer {
           ValueTypeSelect(),
           ValueCountSlider(),
           DelayDurationSlider(),
+          SaveButton(),
         ],
       ),
     );

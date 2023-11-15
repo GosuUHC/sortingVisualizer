@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/sorting_cubit.dart';
-import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/sorting_status.dart';
+import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/sorting/sorting_cubit.dart';
+import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/sorting/sorting_status.dart';
 
 class StartStopControlPanel extends StatelessWidget {
   const StartStopControlPanel({super.key});
