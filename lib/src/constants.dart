@@ -4,8 +4,7 @@ import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/so
 
 final class DefaultConstants {
   static const AlgorithmType defaultAlgoritmType = AlgorithmType.bubble;
-  static const SortingStatus defaultSortingStatus =
-      SortingStatus.initialNoValues;
+  static const SortingStatus defaultSortingStatus = SortingStatus.initial;
   static const int defaultLength = 50;
   static const ValueType defaultValueType = ValueType.random;
   static const Duration defaultDelay = Duration(milliseconds: 50);

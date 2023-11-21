@@ -18,7 +18,7 @@ class DelayDurationSlider extends StatelessWidget {
         child: Slider(
           value: delay.inMilliseconds.toDouble(),
           min: 5,
-          max: 300,
+          max: 200,
           onChanged: (value) {
             context
                 .read<SortingCubit>()

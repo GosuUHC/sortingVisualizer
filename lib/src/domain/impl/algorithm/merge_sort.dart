@@ -15,6 +15,10 @@ class MergeSort implements SortingAlgorithm {
   }
 
   int nextGap(int gap) {
+    if (isComplete) {
+      return 0;
+    }
+
     return gap > 1 ? (gap / 2).ceil() : 0;
   }
 

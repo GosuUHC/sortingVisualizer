@@ -1,1 +1,1 @@
-enum SortingStatus { initial, initialNoValues, running, paused }
+enum SortingStatus { initial, running, paused }

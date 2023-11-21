@@ -14,12 +14,12 @@ class SaveButton extends StatelessWidget {
           height: 24,
           child: CircularProgressIndicator(
             strokeWidth: 2,
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.lightBlue),
           ),
         ),
       SavingStatus.success => const Icon(Icons.check, color: Colors.green),
       SavingStatus.failure => const Icon(Icons.close, color: Colors.red),
-      _ => const Icon(Icons.save, color: Colors.deepPurple)
+      _ => const Icon(Icons.save, color: Colors.blue)
     };
   }
 
@@ -32,10 +32,8 @@ class SaveButton extends StatelessWidget {
     return IconButton(
       onPressed: () {
         final algorithmType = context.read<SortingCubit>().state.algorithmType;
+        const timeExecuting = Duration(milliseconds: 1000); // mock value
 
-        print("SAVING ALGORITHM: $algorithmType");
-
-        const timeExecuting = Duration(milliseconds: 1000);
         context.read<SavingCubit>().saveData(algorithmType, timeExecuting);
       },
       icon: _getIconWidget(status),

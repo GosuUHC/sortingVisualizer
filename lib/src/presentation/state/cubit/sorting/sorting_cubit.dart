@@ -12,11 +12,14 @@ class SortingCubit extends Cubit<SortingState> {
 
   SortingCubit(
       {required this.sortingInteractor, required this.valuesInteractor})
-      : super(SortingState.initial());
+      : super(SortingState.initial()) {
+    generateInitialValues(); // initi
+  }
 
   void generateInitialValues() {
     final values = List<int>.from(
-        valuesInteractor.getValues(state.valueType, state.length));
+      valuesInteractor.getValues(state.valueType, state.length),
+    );
 
     emit(state.copyWith(initialData: values, sortedData: values.toList()));
   }
@@ -26,6 +29,7 @@ class SortingCubit extends Cubit<SortingState> {
       algorithmType: algorithmType,
       sortingStatus: SortingStatus.initial,
     ));
+
     sortingInteractor.reset();
   }
 
@@ -69,9 +73,6 @@ class SortingCubit extends Cubit<SortingState> {
     } else if (state.sortingStatus == SortingStatus.paused) {
       resumeSorting();
     } else if (state.sortingStatus == SortingStatus.initial) {
-      startSorting();
-    } else if (state.sortingStatus == SortingStatus.initialNoValues) {
-      generateInitialValues();
       startSorting();
     }
   }
