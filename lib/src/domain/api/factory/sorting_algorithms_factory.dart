@@ -23,5 +23,5 @@ class SortingAlgorithmsFactory {
       MergeSort(swapper, comparator);
   static SortingAlgorithm createInsertionSort(
           Swapper swapper, ValuesComparator comparator) =>
-      InsertionSort(comparator, swapper);
+      InsertionSort(swapper, comparator);
 }
