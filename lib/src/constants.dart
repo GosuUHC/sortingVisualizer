@@ -8,4 +8,5 @@ final class DefaultConstants {
   static const int defaultLength = 50;
   static const ValueType defaultValueType = ValueType.random;
   static const Duration defaultDelay = Duration(milliseconds: 50);
+  static const bool defaultShouldSaveSettings = false;
 }

@@ -28,6 +28,16 @@ class ColumnPainter extends StatelessWidget {
 class ColumnGraphPainter extends CustomPainter {
   final List<int> data;
   final List<int> comparingIndices;
+  final fillPaint = Paint()
+    ..color = Colors.deepPurpleAccent
+    ..style = PaintingStyle.fill;
+
+  final strokePaint = Paint()
+    ..color = Colors.black
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 1.0;
+
+  final colorsList = <Color>[Colors.yellow, Colors.cyan, Colors.amber];
 
   ColumnGraphPainter(this.data, this.comparingIndices);
 
@@ -37,16 +47,7 @@ class ColumnGraphPainter extends CustomPainter {
     final maxElementHeight =
         data.isNotEmpty ? data.reduce((a, b) => a > b ? a : b).toDouble() : 1.0;
 
-    final colors = <Color>[Colors.yellow, Colors.cyan, Colors.amber];
-
-    final fillPaint = Paint()
-      ..color = Colors.deepPurpleAccent
-      ..style = PaintingStyle.fill;
-
-    final strokePaint = Paint()
-      ..color = Colors.black
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.0;
+    final colors = colorsList.toList();
 
     for (int i = 0; i < data.length; i++) {
       final elementHeight = data[i].toDouble() / maxElementHeight * size.height;

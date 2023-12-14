@@ -12,6 +12,7 @@ class SortingState {
   final ValueType valueType;
   final int length;
   final Duration delay;
+  final bool shouldSaveSettings;
   final Function onSwapElements;
   final Function onCompareElements;
 
@@ -24,6 +25,7 @@ class SortingState {
     required this.valueType,
     required this.length,
     required this.delay,
+    required this.shouldSaveSettings,
     required this.onSwapElements,
     required this.onCompareElements,
   });
@@ -38,6 +40,7 @@ class SortingState {
           valueType: DefaultConstants.defaultValueType,
           length: DefaultConstants.defaultLength,
           delay: DefaultConstants.defaultDelay,
+          shouldSaveSettings: DefaultConstants.defaultShouldSaveSettings,
           onSwapElements: () {},
           onCompareElements: () {},
         );
@@ -51,6 +54,7 @@ class SortingState {
     ValueType? valueType,
     int? length,
     Duration? delay,
+    bool? shouldSaveSettings,
     Function? onSwapElements,
     Function? onCompareElements,
   }) {
@@ -63,6 +67,7 @@ class SortingState {
       valueType: valueType ?? this.valueType,
       length: length ?? this.length,
       delay: delay ?? this.delay,
+      shouldSaveSettings: shouldSaveSettings ?? this.shouldSaveSettings,
       onSwapElements: onSwapElements ?? this.onSwapElements,
       onCompareElements: onCompareElements ?? this.onCompareElements,
     );
