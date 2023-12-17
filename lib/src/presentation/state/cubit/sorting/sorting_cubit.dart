@@ -1,39 +1,24 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:sorting_algorithms_visualization/src/application/algorithm_type.dart';
-import 'package:sorting_algorithms_visualization/src/application/api/in/interactor/settings_interactor.dart';
 import 'package:sorting_algorithms_visualization/src/application/api/in/interactor/sorting_interactor.dart';
 import 'package:sorting_algorithms_visualization/src/application/api/in/interactor/values_interactor.dart';
 import 'package:sorting_algorithms_visualization/src/application/value_type.dart';
+import 'package:sorting_algorithms_visualization/src/constants.dart';
 import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/sorting/sorting_state.dart';
 import 'package:sorting_algorithms_visualization/src/presentation/state/cubit/sorting/sorting_status.dart';
 
-class SortingCubit extends Cubit<SortingState> {
+class SortingCubit extends HydratedCubit<SortingState> {
   final SortingInteractor sortingInteractor;
   final ValuesInteractor valuesInteractor;
-  final SettingsInteractor settingsInteractor;
 
   SortingCubit({
     required this.sortingInteractor,
     required this.valuesInteractor,
-    required this.settingsInteractor,
   }) : super(SortingState.initial()) {
     initialize();
   }
 
   Future<void> initialize() async {
-    emit(state.copyWith(
-      shouldSaveSettings: await settingsInteractor.getShouldPersist(),
-    ));
-
-    if (state.shouldSaveSettings) {
-      emit(state.copyWith(
-        algorithmType: await settingsInteractor.getAlgorithmType(),
-        valueType: await settingsInteractor.getValueType(),
-        length: await settingsInteractor.getLength(),
-        delay: await settingsInteractor.getDelay(),
-      ));
-    }
-
     generateInitialValues();
   }
 
@@ -51,22 +36,18 @@ class SortingCubit extends Cubit<SortingState> {
       sortingStatus: SortingStatus.initial,
     ));
 
-    settingsInteractor.saveAlgorithmType(algorithmType);
-
     sortingInteractor.reset();
   }
 
   void updateSelectedDelay(Duration delay) {
     emit(state.copyWith(delay: delay));
 
-    settingsInteractor.saveDelay(delay);
     sortingInteractor.updateDelay(state.delay);
   }
 
   void updateSelectedValueType(ValueType valueType) {
     emit(state.copyWith(valueType: valueType));
 
-    settingsInteractor.saveValueType(valueType);
     generateInitialValues();
     reset();
   }
@@ -74,15 +55,12 @@ class SortingCubit extends Cubit<SortingState> {
   void updateSelectedLength(int length) {
     emit(state.copyWith(length: length));
 
-    settingsInteractor.saveLength(length);
     generateInitialValues();
     reset();
   }
 
   void updateShouldSaveSettings(bool shouldSaveSettings) {
     emit(state.copyWith(shouldSaveSettings: shouldSaveSettings));
-
-    settingsInteractor.updateShouldPersist(shouldSaveSettings);
   }
 
   void _onSwapElements() {
@@ -139,5 +117,36 @@ class SortingCubit extends Cubit<SortingState> {
   Future<void> resumeSorting() async {
     emit(state.copyWith(sortingStatus: SortingStatus.running));
     await sortingInteractor.resumeSorting();
+  }
+
+  @override
+  SortingState? fromJson(Map<String, dynamic> json) {
+    return SortingState.initial().copyWith(
+      algorithmType: AlgorithmType.values[
+          json["algorithmType"] ?? DefaultConstants.defaultAlgoritmType.index],
+      valueType: ValueType
+          .values[json["valueType"] ?? DefaultConstants.defaultValueType.index],
+      length: json["length"] ?? DefaultConstants.defaultLength,
+      delay: Duration(
+          milliseconds:
+              json["delay"] ?? DefaultConstants.defaultDelay.inMilliseconds),
+      shouldSaveSettings: json["shouldSaveSettings"] ??
+          DefaultConstants.defaultShouldSaveSettings,
+    );
+  }
+
+  @override
+  Map<String, dynamic>? toJson(SortingState state) {
+    if (state.shouldSaveSettings) {
+      return {
+        "algorithmType": state.algorithmType.index,
+        "valueType": state.valueType.index,
+        "length": state.length,
+        "delay": state.delay.inMilliseconds,
+        "shouldSaveSettings": true,
+      };
+    } else {
+      return {};
+    }
   }
 }
