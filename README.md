@@ -1,3 +1,6 @@
 # sorting_algorithms_visualization
 
-A new Flutter project.
+Flutter project for visualizing sorting algorithms
+
+## Demo
+![demo_gif](assets/demos/out.gif)
