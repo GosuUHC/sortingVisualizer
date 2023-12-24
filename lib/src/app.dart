@@ -12,15 +12,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(useMaterial3: true),
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (_) => SortingCubit(
-              sortingInteractor: SortingInteractorImpl(),
-              valuesInteractor: ValuesInteractorImpl(),
-            ),
-          ),
-        ],
+      home: BlocProvider(
+        create: (_) => SortingCubit(
+          sortingInteractor: SortingInteractorImpl(),
+          valuesInteractor: ValuesInteractorImpl(),
+        ),
         child: const SortingScreen(),
       ),
       debugShowCheckedModeBanner: false,
