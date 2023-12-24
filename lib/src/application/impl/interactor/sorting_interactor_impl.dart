@@ -39,10 +39,6 @@ class SortingInteractorImpl implements SortingInteractor {
     this.delay = delay;
   }
 
-  void _updateAlgorithm(AlgorithmType algorithmType) {
-    sortingAlgorithm = _configureSortingAlgorithm(algorithmType);
-  }
-
   Future<void> flagListener() async {
     while (!isSorting) {
       await Future.delayed(const Duration(milliseconds: 10));
