@@ -24,14 +24,11 @@ class SortingInteractorImpl implements SortingInteractor {
   ) async {
     this.delay = delay;
     swapper = _configureSwapper(onChangeCallback);
-    comparator = _configureComparator((List<int> indicies) async {
-      await Future.delayed(this.delay);
-      await flagListener();
+    comparator = _configureComparator(
+      onCompareCallbackWrapper(onCompareCallback),
+    );
 
-      onCompareCallback(indicies);
-    });
-
-    _updateAlgorithm(algorithmType);
+    sortingAlgorithm = _configureSortingAlgorithm(algorithmType);
     isSorting = true;
 
     await sortingAlgorithm?.sort(input);
@@ -50,6 +47,15 @@ class SortingInteractorImpl implements SortingInteractor {
     while (!isSorting) {
       await Future.delayed(const Duration(milliseconds: 10));
     }
+  }
+
+  Function onCompareCallbackWrapper(Function onCompareCallback) {
+    return (List<int> indicies) async {
+      await Future.delayed(delay);
+      await flagListener();
+
+      onCompareCallback(indicies);
+    };
   }
 
   @override
