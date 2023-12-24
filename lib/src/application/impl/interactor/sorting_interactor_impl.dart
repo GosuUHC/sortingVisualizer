@@ -9,32 +9,32 @@ import 'package:sorting_algorithms_visualization/src/domain/api/out/values_compa
 
 class SortingInteractorImpl implements SortingInteractor {
   SortingAlgorithm? sortingAlgorithm;
-  Swapper? swapper;
-  ValuesComparator? comparator;
-  Duration? delay;
+  late Swapper swapper;
+  late ValuesComparator comparator;
+  late Duration delay;
   bool isSorting = false;
 
   @override
   Future<void> startSorting(
     AlgorithmType algorithmType,
     List input,
-    Duration? delay,
-    Function? onChangeCallback,
-    Function? onCompareCallback,
+    Duration delay,
+    Function onChangeCallback,
+    Function onCompareCallback,
   ) async {
     this.delay = delay;
     swapper = _configureSwapper(onChangeCallback);
     comparator = _configureComparator((List<int> indicies) async {
-      await Future.delayed(this.delay!);
+      await Future.delayed(this.delay);
       await flagListener();
 
-      onCompareCallback!(indicies);
+      onCompareCallback(indicies);
     });
 
     _updateAlgorithm(algorithmType);
     isSorting = true;
 
-    await sortingAlgorithm!.sort(input);
+    await sortingAlgorithm?.sort(input);
   }
 
   @override
@@ -76,9 +76,6 @@ class SortingInteractorImpl implements SortingInteractor {
   }
 
   SortingAlgorithm _configureSortingAlgorithm(AlgorithmType algorithm) {
-    final swapper = this.swapper!;
-    final comparator = this.comparator!;
-
     return switch (algorithm) {
       AlgorithmType.bubble =>
         SortingAlgorithmsFactory.createBubbleSort(swapper, comparator),
